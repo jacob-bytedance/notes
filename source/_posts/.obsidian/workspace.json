@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "77f1c1420c806a21",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Welcome.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Domain Driven Design.md",
+                "file": "Welcome.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Domain Driven Design.md",
+                "file": "Welcome.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Domain Driven Design.md"
+                "file": "Welcome.md"
               }
             }
           }
@@ -146,11 +159,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8a0bf6b5ed890fed",
+  "active": "77f1c1420c806a21",
   "lastOpenFiles": [
-    "2024-08-29.md",
-    "Domain Driven Design.md",
     "hello-world.md",
+    "Domain Driven Design.md",
+    "Untitled.md",
+    "Untitled 1.md",
+    "Templates/Note Template.md",
+    "Templates",
+    "2024-08-29.md",
     "Attachments/Domain Driven Design/5.png",
     "Attachments/Domain Driven Design/6.png",
     "Attachments/Domain Driven Design/7.png",
@@ -163,7 +180,6 @@
     "Attachments/Domain Driven Design/14.png",
     "Attachments/Welcome",
     "Attachments/Domain Driven Design",
-    "Untitled.md",
     "Welcome.md",
     "Attachments",
     "MyBatis with Spring Boot.md"

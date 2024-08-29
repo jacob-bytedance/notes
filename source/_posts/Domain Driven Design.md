@@ -1,7 +1,6 @@
 ---
 title: Domain Driven Design
 ---
-
 # Key Concepts
 
 - **Domain**: Sphere of knowledge and activity around which the business revolves
