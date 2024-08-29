@@ -30,9 +30,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "6243a3876541a736",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Domain Driven Design.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -98,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Welcome.md",
+                "file": "Domain Driven Design.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Welcome.md",
+                "file": "Domain Driven Design.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Welcome.md"
+                "file": "Domain Driven Design.md"
               }
             }
           }
@@ -159,29 +171,31 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "77f1c1420c806a21",
+  "active": "6243a3876541a736",
   "lastOpenFiles": [
-    "hello-world.md",
+    "Test Post with Img.md",
+    "img/1.png",
     "Domain Driven Design.md",
-    "Untitled.md",
-    "Untitled 1.md",
     "Templates/Note Template.md",
+    "img/1.key",
+    "img/Jacob's Favicon.key",
+    "Welcome.md",
+    "hello-world.md",
+    "Untitled 1.md",
     "Templates",
     "2024-08-29.md",
-    "Attachments/Domain Driven Design/5.png",
-    "Attachments/Domain Driven Design/6.png",
-    "Attachments/Domain Driven Design/7.png",
-    "Attachments/Domain Driven Design/8.png",
-    "Attachments/Domain Driven Design/9.png",
-    "Attachments/Domain Driven Design/10.png",
-    "Attachments/Domain Driven Design/11.png",
-    "Attachments/Domain Driven Design/12.png",
-    "Attachments/Domain Driven Design/13.png",
-    "Attachments/Domain Driven Design/14.png",
-    "Attachments/Welcome",
-    "Attachments/Domain Driven Design",
-    "Welcome.md",
-    "Attachments",
+    "img/Domain Driven Design/5.png",
+    "img/Domain Driven Design/6.png",
+    "img/Domain Driven Design/7.png",
+    "img/Domain Driven Design/8.png",
+    "img/Domain Driven Design/9.png",
+    "img/Domain Driven Design/10.png",
+    "img/Domain Driven Design/11.png",
+    "img/Domain Driven Design/12.png",
+    "img/Domain Driven Design/13.png",
+    "img/Welcome",
+    "img/Domain Driven Design",
+    "img",
     "MyBatis with Spring Boot.md"
   ]
 }

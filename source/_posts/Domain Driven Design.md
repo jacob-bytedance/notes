@@ -5,7 +5,7 @@ title: Domain Driven Design
 
 - **Domain**: Sphere of knowledge and activity around which the business revolves
 - **Bounded Contexts**: Implementation of a domain or sub-domain, characterized by clear boundaries and model autonomy
-	- ![[Attachments/Domain Driven Design/1.png|512]]
+	- ![[img/Domain Driven Design/1.png|512]]
 	- ![[2.png|512]]
 - **Aggregate**: Cluster of entities and value objects that are treated as a single unit for data changes and consistency, Principal identifier of your bounded context
 	- **Entities**: Objects that have a distinct identity and lifecycle (creation, modification, deletion), e.g. customer or order
