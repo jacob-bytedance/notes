@@ -1,31 +1,45 @@
-name: Build and Deploy
+
+name: "Hexo Blog Builder"
 
 on:
   push:
     branches:
-      - main  # Change to your default branch name if necessary
+      - master
+
+permissions:
+  contents: write
 
 jobs:
   build:
+    name: "Hexo Blog Build"
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
         with:
-          node-version: '22'  # Specify the Node.js version you need
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build the site
-        run: npm run server
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public  # Specify the directory with the built site
+          node-version: '20'
+      - name: Clone Submodule
+        run: git submodule init && git submodule update
+      - name: Install pnpm
+        run: npm i pnpm -g
+      - name: Install Dependencies
+        run: pnpm install
+      - name: Install Dependencies for Theme Cupertino
+        run: cd themes/cupertino && pnpm install && cd ../..
+      - name: Clean Previous Build
+        run: rm -rf docs
+      - name: Hexo Clean
+        run: pnpm run clean
+      - name: Generate New Build
+        run: pnpm run build
+      - name: Move docs/ to public/
+        run: mv public docs
+      - name: Publish
+        run: |
+          git config --global user.name "Hexo Deploy Bot"
+          git config --global user.email "nobody@nobody.nobody"
+          git add .
+          git commit -m "Hexo Blog Build"
+          git push
