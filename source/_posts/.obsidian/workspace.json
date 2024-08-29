@@ -42,9 +42,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "5562c975a0fe73c5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Git Basics.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -110,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Test Post with Img.md",
+                "file": "Git Basics.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Test Post with Img.md",
+                "file": "Git Basics.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Test Post with Img.md"
+                "file": "Git Basics.md"
               }
             }
           }
@@ -171,11 +183,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "6243a3876541a736",
+  "active": "5562c975a0fe73c5",
   "lastOpenFiles": [
+    "Test Post with Img.md",
+    "Git Basics.md",
     "MyBatis with Spring Boot.md",
     "Welcome.md",
-    "Test Post with Img.md",
     "Templates/Note Template.md",
     "Hello World.md",
     "Domain Driven Design.md",
