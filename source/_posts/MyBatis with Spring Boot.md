@@ -383,6 +383,12 @@ INSERT INTO metrics ("key", name, description, "value", status, category, module
 VALUES ('mobile_traffic_ratio', 'Mobile Traffic Ratio', 'Percentage of total traffic from mobile devices', 58.7, 'ACTIVE', 'Site Traffic', 'Analytics Module');
 ```
 
+### 6.3 Interacting with the SQL Table
+
+You can log in to the interactive H2 console via http://localhost:8080/h2-console/ with JDBC URL `jdbc:h2:mem:db` and username `sa` (leave password field blank). This was configured section 3 using `application.properties` and the username and password were set to default values (but can be changed by specifying the desired username and/or password in `application.properties).
+
+After you log in, you can run SQL queries such as `SELECT * FROM metrics` to view all metrics.
+
 # 7. Service Layer Integration
 
 ## 7.1. Creating the Service Class
