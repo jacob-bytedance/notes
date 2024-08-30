@@ -501,50 +501,30 @@ curl -X GET http://localhost:8080/metrics
 ### 8.2.2 Insert metric
 ```bash
 curl -X POST http://localhost:8080/metrics \
-
      -H "Content-Type: application/json" \
-
      -d '{
-
            "key": "metric-key-001",
-
            "name": "User Engagement Metric",
-
            "description": "Measures user engagement across various platforms.",
-
            "value": 85.0,
-
            "status": "ACTIVE",
-
            "category": "ENGAGEMENT",
-
            "module": "ANALYTICS"
-
          }'
 ```
 
 ### 8.2.3 Update metric
 ```bash
 curl -X PUT http://localhost:8080/metrics/1 \
-
      -H "Content-Type: application/json" \
-
      -d '{
-
            "key": "metric-key-001",
-
            "name": "Updated User Engagement Metric",
-
-           "description": "Updated description for the user engagement metric.",           
-
+           "description": "Updated description for the user engagement metric.",
            "value": 90.0,
-
            "status": "ACTIVE",
-
            "category": "ENGAGEMENT",
-
            "module": "ANALYTICS"
-
          }'
 ```
 
