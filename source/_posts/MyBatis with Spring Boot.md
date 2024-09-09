@@ -92,6 +92,8 @@ mybatis.mapper-locations=classpath:mapper/*.xml
 
 # 4. Creating Entity Object
 
+## 4.1 Manual Creation
+
 As an example, we will create a database of metrics. We start off with `MetricPO.java` located in `src/main/org/jacobwu/mybatis/entity/MetricPO.java`. The getters and setters are created via IntelliJ's generators for getters and setters.
 
 ```java
@@ -193,6 +195,24 @@ public class MetricPO {
     }  
 }
 ```
+
+## 4.2 Automatic Creation
+
+As an alternative to 4.1, you can describe the changes inside generatorConfig.xml and have MyBatis automatically create the file for you. An example is shown below.
+
+```xml
+<table tableName="metric" domainObjectName="MetricAccessPO"  
+       enableSelectByPrimaryKey="true"  
+       enableCountByExample="true"  
+       enableUpdateByExample="true"  
+       enableDeleteByExample="true"  
+       enableSelectByExample="true"  
+       selectByExampleQueryId="true">  
+    <property name="needIdGenColumn" value="id"/>  
+</table>
+```
+
+Then, run 
 
 # 5. Working with MyBatis Mappers
 
