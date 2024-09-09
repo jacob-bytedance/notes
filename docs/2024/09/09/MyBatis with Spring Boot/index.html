@@ -24,7 +24,7 @@
   
   <meta property="og:image" content="/favicon.png" />
   
-  <meta property="og:article:published_time" content="2024-09-09T23:49:52.798Z" />
+  <meta property="og:article:published_time" content="2024-09-09T23:57:52.080Z" />
   
   <meta property="og:article:author" content="Jacob Wu" />
   
@@ -218,7 +218,7 @@
 <h2 id="4-2-Automatic-Creation"><a href="#4-2-Automatic-Creation" class="headerlink" title="4.2 Automatic Creation"></a>4.2 Automatic Creation</h2><p>As an alternative to 4.1, you can describe the changes inside generatorConfig.xml and have MyBatis automatically create the file for you. An example is shown below.</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">&quot;metric&quot;</span> <span class="attr">domainObjectName</span>=<span class="string">&quot;MetricAccessPO&quot;</span>  </span></span><br><span class="line"><span class="tag">       <span class="attr">enableSelectByPrimaryKey</span>=<span class="string">&quot;true&quot;</span>  </span></span><br><span class="line"><span class="tag">       <span class="attr">enableCountByExample</span>=<span class="string">&quot;true&quot;</span>  </span></span><br><span class="line"><span class="tag">       <span class="attr">enableUpdateByExample</span>=<span class="string">&quot;true&quot;</span>  </span></span><br><span class="line"><span class="tag">       <span class="attr">enableDeleteByExample</span>=<span class="string">&quot;true&quot;</span>  </span></span><br><span class="line"><span class="tag">       <span class="attr">enableSelectByExample</span>=<span class="string">&quot;true&quot;</span>  </span></span><br><span class="line"><span class="tag">       <span class="attr">selectByExampleQueryId</span>=<span class="string">&quot;true&quot;</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;needIdGenColumn&quot;</span> <span class="attr">value</span>=<span class="string">&quot;id&quot;</span>/&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>Then, run </p>
+<p>Then, run the command <code>mvn mybatis-generator:generate</code> inside the appropriate sub-directory (e.g. service) to generate the file.</p>
 <h1 id="5-Working-with-MyBatis-Mappers"><a href="#5-Working-with-MyBatis-Mappers" class="headerlink" title="5. Working with MyBatis Mappers"></a>5. Working with MyBatis Mappers</h1><h2 id="5-1-Creating-Mapper-Interfaces"><a href="#5-1-Creating-Mapper-Interfaces" class="headerlink" title="5.1 Creating Mapper Interfaces"></a>5.1 Creating Mapper Interfaces</h2><p>The mapper interfaces are used to define the SQL operations that can be performed on the database. We create <code>MetricPOMapper.java</code> located at <code>src/main/java/org/jacobwu/mybatis/mapper/MetricPOMapper.java</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.jacobwu.mybatis.mapper;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> org.jacobwu.mybatis.entity.MetricPO;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> java.util.List;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">MetricPOMapper</span> &#123;  </span><br><span class="line">    List&lt;MetricPO&gt; <span class="title function_">findAll</span><span class="params">()</span>;  </span><br><span class="line">    MetricPO <span class="title function_">findById</span><span class="params">(Long id)</span>;  </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">insert</span><span class="params">(MetricPO metricPO)</span>;  </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">update</span><span class="params">(MetricPO metricPO)</span>;  </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">delete</span><span class="params">(Long id)</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -271,17 +271,17 @@
 
     <div class="container post-prev-next">
         
-        <a href="/notes/2024/09/09/Hello%20World/" class="next">
+        <a href="/notes/2024/09/09/Welcome/" class="next">
             <div>
                 <div class="text">
                     <p class="label">Next</p>
-                    <h3 class="title">Hello World</h3>
+                    <h3 class="title"></h3>
                 </div>
             </div>
         </a>
         
         
-        <a href="/notes/2024/09/09/Test%20Post%20with%20Img/" class="prev">
+        <a href="/notes/2024/09/09/Templates/Note%20Template/" class="prev">
             <div>
                 <div class="text">
                     <p class="label">Previous</p>
