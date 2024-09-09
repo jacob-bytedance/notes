@@ -212,7 +212,7 @@ As an alternative to 4.1, you can describe the changes inside generatorConfig.xm
 </table>
 ```
 
-Then, run 
+Then, run the command `mvn mybatis-generator:generate` inside the appropriate sub-directory (e.g. service) to generate the file.
 
 # 5. Working with MyBatis Mappers
 
