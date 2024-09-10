@@ -220,6 +220,8 @@ Create a `MetricRepository` in
 
 # 5. Download and Start Elasticsearch
 
+## 5.1 Download and Run
+
 1. Download Elasticsearch from [Elasticsearch official download page](https://www.elastic.co/downloads/elasticsearch)
 2. Extract the package (Safari should do so automatically)
 3. Run Elasticsearch. For mac, the command is `bin/elasticsearch`. Before running, please ensure the ES_JAVA_HOME is set to the jdk locally.
@@ -235,3 +237,28 @@ You will see a message similar to the one below:
 ```
 
 In a new terminal window, run `curl -u elastic -X GET "http://localhost:9200/"`. Use this password from the message earlier to authenticate. You should see `curl: (52) Empty reply from server` since the elasticsearch cluster is currently empty.
+
+## 5.2 Configure
+
+Modify `config/elasticsearch.yml` to disable security for local testing so you won't have to deal with the headache of SSL and certificate authentication. Remove these lines by deleting.
+
+```
+# Enable security features
+xpack.security.enabled: true
+
+xpack.security.enrollment.enabled: true
+
+# Enable encryption for HTTP API client connections, such as Kibana, Logstash, and Agents
+xpack.security.http.ssl:
+  enabled: true
+  keystore.path: certs/http.p12
+
+# Enable encryption and mutual authentication between cluster nodes
+xpack.security.transport.ssl:
+  enabled: true
+  verification_mode: certificate
+  keystore.path: certs/transport.p12
+  truststore.path: certs/transport.p12
+```
+
+
