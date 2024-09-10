@@ -69,6 +69,8 @@ Spring Boot simplifies configuration by providing defaults based on the dependen
 ```properties
 spring.data.elasticsearch.client.reactive.endpoints=localhost:9200  
 spring.data.elasticsearch.repositories.enabled=true
+spring.elasticsearch.rest.username=elastic  
+spring.elasticsearch.rest.password=your_password_here
 ```
 
 # 3. Creating Entity Object
@@ -232,6 +234,4 @@ You will see a message similar to the one below:
 ℹ️  Password for the **elastic** user (reset with `bin/elasticsearch-reset-password -u elastic`):
 ```
 
-In a new terminal window, run `curl -u elastic -X GET "http://localhost:9200/"`. Use this password from the message earlier to authenticate
-
-[http://localhost:9200](http://localhost:9200)
+In a new terminal window, run `curl -u elastic -X GET "http://localhost:9200/"`. Use this password from the message earlier to authenticate. You should see `curl: (52) Empty reply from server` since the elasticsearch cluster is currently empty.
