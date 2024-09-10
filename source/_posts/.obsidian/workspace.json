@@ -54,9 +54,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "6173e60e3c21f448",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Elasticsearch with Spring Boot.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -122,7 +134,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MyBatis with Spring Boot.md",
+                "file": "Elasticsearch with Spring Boot.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +151,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "MyBatis with Spring Boot.md",
+                "file": "Elasticsearch with Spring Boot.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +174,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "MyBatis with Spring Boot.md"
+                "file": "Elasticsearch with Spring Boot.md"
               }
             }
           }
@@ -183,10 +195,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5562c975a0fe73c5",
+  "active": "6173e60e3c21f448",
   "lastOpenFiles": [
-    "Domain Driven Design.md",
     "MyBatis with Spring Boot.md",
+    "Elasticsearch with Spring Boot.md",
+    "Domain Driven Design.md",
     "Test Post with Img.md",
     "Hello World.md",
     "Git Basics.md",
