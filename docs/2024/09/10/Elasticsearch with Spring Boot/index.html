@@ -24,7 +24,7 @@
   
   <meta property="og:image" content="/favicon.png" />
   
-  <meta property="og:article:published_time" content="2024-09-10T21:26:19.266Z" />
+  <meta property="og:article:published_time" content="2024-09-10T21:34:17.876Z" />
   
   <meta property="og:article:author" content="Jacob Wu" />
   
@@ -205,7 +205,12 @@
 </li>
 <li><strong>Generate the Project:</strong> Click the “Generate” button to download the project as a ZIP file. Extract the ZIP file and open it in your IDE.</li>
 </ol>
-
+<h2 id="2-3-Elasticsearch-Configuration-in-Spring-Boot"><a href="#2-3-Elasticsearch-Configuration-in-Spring-Boot" class="headerlink" title="2.3 Elasticsearch Configuration in Spring Boot"></a>2.3 Elasticsearch Configuration in Spring Boot</h2><p>Spring Boot simplifies configuration by providing defaults based on the dependencies included in the project. Let’s set up the basic configuration in the <code>application.properties</code> file to get our project up and running.</p>
+<ol>
+<li><strong>Open <code>application.properties</code>:</strong> Located in <code>src/main/resources</code>.</li>
+<li><strong>Add the following properties:</strong></li>
+</ol>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring.data.elasticsearch.client.reactive.endpoints</span>=<span class="string">localhost:9200  </span></span><br><span class="line"><span class="attr">spring.data.elasticsearch.repositories.enabled</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
     </div>
 
     
