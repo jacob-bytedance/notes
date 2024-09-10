@@ -58,3 +58,15 @@ Before we dive into the coding, ensure you have the following tools installed:
    - **Spring Web**
    - **Spring Data Elasticsearch (Access+Driver)**
 4. **Generate the Project:** Click the "Generate" button to download the project as a ZIP file. Extract the ZIP file and open it in your IDE.
+
+## 2.3 Elasticsearch Configuration in Spring Boot
+
+Spring Boot simplifies configuration by providing defaults based on the dependencies included in the project. Let’s set up the basic configuration in the `application.properties` file to get our project up and running.
+
+1. **Open `application.properties`:** Located in `src/main/resources`.
+2. **Add the following properties:**
+
+```properties
+spring.data.elasticsearch.client.reactive.endpoints=localhost:9200  
+spring.data.elasticsearch.repositories.enabled=true
+```
