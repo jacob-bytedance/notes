@@ -72,3 +72,139 @@ spring.data.elasticsearch.repositories.enabled=true
 ```
 
 # 3. Creating Entity Object
+
+We start off with `MetricEsDTO.java` located in `src/main/org/jacobwu/elasticsearch_springboot/model/MetricEsDTO.java`. The getters and setters are created via IntelliJ's generators for getters and setters.
+
+```java
+package org.jacobwu.elasticsearch_springboot.model;  
+  
+import org.springframework.data.annotation.Id;  
+import org.springframework.data.elasticsearch.annotations.Document;  
+import org.springframework.data.elasticsearch.annotations.Field;  
+  
+import java.time.LocalDateTime;  
+import org.springframework.data.elasticsearch.annotations.FieldType;  
+  
+@Document(indexName = "metrics")  
+public class MetricEsDTO {  
+  
+    @Id  
+    private Long id; // The primary key  
+  
+    @Field(type = FieldType.Keyword)  
+    private String key; // A unique key for the metric  
+  
+    @Field(type = FieldType.Text)  
+    private String name; // The name of the metric  
+  
+    @Field(type = FieldType.Text)  
+    private String description; // A description of the metric  
+  
+    @Field(type = FieldType.Double)  
+    private Double value; // The current value of the metric  
+  
+    @Field(type = FieldType.Date)  
+    private LocalDateTime createdAt; // Timestamp when the metric was created  
+  
+    @Field(type = FieldType.Date)  
+    private LocalDateTime updatedAt; // Timestamp when the metric was last updated  
+  
+    @Field(type = FieldType.Keyword)  
+    private String status; // The status of the metric (e.g., active, inactive)  
+  
+    @Field(type = FieldType.Keyword)  
+    private String category; // The category of the metric  
+  
+    @Field(type = FieldType.Keyword)  
+    private String module; // The module to which the metric belongs  
+  
+    public Long getId() {  
+        return id;  
+    }  
+  
+    public void setId(Long id) {  
+        this.id = id;  
+    }  
+  
+    public String getKey() {  
+        return key;  
+    }  
+  
+    public void setKey(String key) {  
+        this.key = key;  
+    }  
+  
+    public String getName() {  
+        return name;  
+    }  
+  
+    public void setName(String name) {  
+        this.name = name;  
+    }  
+  
+    public String getDescription() {  
+        return description;  
+    }  
+  
+    public void setDescription(String description) {  
+        this.description = description;  
+    }  
+  
+    public Double getValue() {  
+        return value;  
+    }  
+  
+    public void setValue(Double value) {  
+        this.value = value;  
+    }  
+  
+    public LocalDateTime getCreatedAt() {  
+        return createdAt;  
+    }  
+  
+    public void setCreatedAt(LocalDateTime createdAt) {  
+        this.createdAt = createdAt;  
+    }  
+  
+    public LocalDateTime getUpdatedAt() {  
+        return updatedAt;  
+    }  
+  
+    public void setUpdatedAt(LocalDateTime updatedAt) {  
+        this.updatedAt = updatedAt;  
+    }  
+  
+    public String getStatus() {  
+        return status;  
+    }  
+  
+    public void setStatus(String status) {  
+        this.status = status;  
+    }  
+  
+    public String getCategory() {  
+        return category;  
+    }  
+  
+    public void setCategory(String category) {  
+        this.category = category;  
+    }  
+  
+    public String getModule() {  
+        return module;  
+    }  
+  
+    public void setModule(String module) {  
+        this.module = module;  
+    }  
+}
+```
+
+**@Document(indexName = “metrics”)** specifies that instances of MetricEsDTO should be stored in the Elasticsearch index named “metrics”
+
+**@Id** marks the id field as the primary key for documents in the Elasticsearch index
+
+**@Field(type = FieldType.\*)** specify the type of each field as it should be treated in Elasticsearch
+* Keyword fields are searchable but not analyzed
+* Text fields are searchable and analyzed (broken down into searchable terms, enables full-text search)
+
