@@ -208,3 +208,10 @@ public class MetricEsDTO {
 * Keyword fields are searchable but not analyzed
 * Text fields are searchable and analyzed (broken down into searchable terms, enables full-text search)
 
+# 4. Create a Repository Interface
+
+Create a `MetricRepository` in 
+
+```
+
+```
