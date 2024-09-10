@@ -24,7 +24,7 @@
   
   <meta property="og:image" content="/favicon.png" />
   
-  <meta property="og:article:published_time" content="2024-09-10T23:27:44.357Z" />
+  <meta property="og:article:published_time" content="2024-09-10T23:51:44.453Z" />
   
   <meta property="og:article:author" content="Jacob Wu" />
   
@@ -225,7 +225,7 @@
 <h1 id="4-Create-a-Repository-Interface"><a href="#4-Create-a-Repository-Interface" class="headerlink" title="4. Create a Repository Interface"></a>4. Create a Repository Interface</h1><p>Create a <code>MetricRepository</code> in </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h1 id="5-Download-and-Start-Elasticsearch"><a href="#5-Download-and-Start-Elasticsearch" class="headerlink" title="5. Download and Start Elasticsearch"></a>5. Download and Start Elasticsearch</h1><ol>
+<h1 id="5-Download-and-Start-Elasticsearch"><a href="#5-Download-and-Start-Elasticsearch" class="headerlink" title="5. Download and Start Elasticsearch"></a>5. Download and Start Elasticsearch</h1><h2 id="5-1-Download-and-Run"><a href="#5-1-Download-and-Run" class="headerlink" title="5.1 Download and Run"></a>5.1 Download and Run</h2><ol>
 <li>Download Elasticsearch from <a target="_blank" rel="noopener" href="https://www.elastic.co/downloads/elasticsearch">Elasticsearch official download page</a></li>
 <li>Extract the package (Safari should do so automatically)</li>
 <li>Run Elasticsearch. For mac, the command is <code>bin/elasticsearch</code>. Before running, please ensure the ES_JAVA_HOME is set to the jdk locally.</li>
@@ -234,6 +234,10 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">✅ Elasticsearch security features have been automatically configured!</span><br><span class="line"></span><br><span class="line">✅ Authentication is enabled and cluster connections are encrypted.</span><br><span class="line"></span><br><span class="line">ℹ️  Password for the **elastic** user (reset with `bin/elasticsearch-reset-password -u elastic`):</span><br></pre></td></tr></table></figure>
 
 <p>In a new terminal window, run <code>curl -u elastic -X GET &quot;http://localhost:9200/&quot;</code>. Use this password from the message earlier to authenticate. You should see <code>curl: (52) Empty reply from server</code> since the elasticsearch cluster is currently empty.</p>
+<h2 id="5-2-Configure"><a href="#5-2-Configure" class="headerlink" title="5.2 Configure"></a>5.2 Configure</h2><p>Modify <code>config/elasticsearch.yml</code> to disable security for local testing so you won’t have to deal with the headache of SSL and certificate authentication. Remove these lines by deleting.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># Enable security features</span><br><span class="line">xpack.security.enabled: true</span><br><span class="line"></span><br><span class="line">xpack.security.enrollment.enabled: true</span><br><span class="line"></span><br><span class="line"># Enable encryption for HTTP API client connections, such as Kibana, Logstash, and Agents</span><br><span class="line">xpack.security.http.ssl:</span><br><span class="line">  enabled: true</span><br><span class="line">  keystore.path: certs/http.p12</span><br><span class="line"></span><br><span class="line"># Enable encryption and mutual authentication between cluster nodes</span><br><span class="line">xpack.security.transport.ssl:</span><br><span class="line">  enabled: true</span><br><span class="line">  verification_mode: certificate</span><br><span class="line">  keystore.path: certs/transport.p12</span><br><span class="line">  truststore.path: certs/transport.p12</span><br></pre></td></tr></table></figure>
+
+
 
     </div>
 
