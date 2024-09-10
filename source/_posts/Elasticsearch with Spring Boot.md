@@ -70,3 +70,5 @@ Spring Boot simplifies configuration by providing defaults based on the dependen
 spring.data.elasticsearch.client.reactive.endpoints=localhost:9200  
 spring.data.elasticsearch.repositories.enabled=true
 ```
+
+# 3. Creating Entity Object
