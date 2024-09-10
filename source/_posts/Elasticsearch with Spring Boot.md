@@ -215,3 +215,23 @@ Create a `MetricRepository` in
 ```
 
 ```
+
+# 5. Download and Start Elasticsearch
+
+1. Download Elasticsearch from [Elasticsearch official download page](https://www.elastic.co/downloads/elasticsearch)
+2. Extract the package (Safari should do so automatically)
+3. Run Elasticsearch. For mac, the command is `bin/elasticsearch`. Before running, please ensure the ES_JAVA_HOME is set to the jdk locally.
+
+You will see a message similar to the one below:
+
+```
+✅ Elasticsearch security features have been automatically configured!
+
+✅ Authentication is enabled and cluster connections are encrypted.
+
+ℹ️  Password for the **elastic** user (reset with `bin/elasticsearch-reset-password -u elastic`):
+```
+
+In a new terminal window, run `curl -u elastic -X GET "http://localhost:9200/"`. Use this password from the message earlier to authenticate
+
+[http://localhost:9200](http://localhost:9200)
