@@ -521,7 +521,7 @@ public class MetricService {
 
 Now, let’s accept RESTful API using a controller at `src/main/org/jacobwu/elasticsearch_springboot/controller/MetricController.java`
 
-I recommend adding a delete all endpoint as included below in case you mess up.
+I recommend adding a `deleteAllMetrics` endpoint as included below in case you mess up.
 
 ```java
 package org.jacobwu.elasticsearch_springboot.controller;  
