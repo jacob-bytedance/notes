@@ -318,6 +318,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;  
 import org.springframework.data.elasticsearch.annotations.Field;  
   
+import java.time.LocalDate;  
 import java.time.LocalDateTime;  
 import org.springframework.data.elasticsearch.annotations.FieldType;  
   
@@ -325,7 +326,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 public class Metric {  
   
     @Id  
-    private Long id; // The primary key  
+    private String id; // The primary key  
   
     @Field(type = FieldType.Keyword)  
     private String key; // A unique key for the metric  
@@ -340,10 +341,10 @@ public class Metric {
     private Double value; // The current value of the metric  
   
     @Field(type = FieldType.Date)  
-    private LocalDateTime createdAt; // Timestamp when the metric was created  
+    private LocalDate createdAt; // Timestamp when the metric was created  
   
     @Field(type = FieldType.Date)  
-    private LocalDateTime updatedAt; // Timestamp when the metric was last updated  
+    private LocalDate updatedAt; // Timestamp when the metric was last updated  
   
     @Field(type = FieldType.Keyword)  
     private String status; // The status of the metric (e.g., active, inactive)  
@@ -354,11 +355,11 @@ public class Metric {
     @Field(type = FieldType.Keyword)  
     private String module; // The module to which the metric belongs  
   
-    public Long getId() {  
+    public String getId() {  
         return id;  
     }  
   
-    public void setId(Long id) {  
+    public void setId(String id) {  
         this.id = id;  
     }  
   
@@ -394,19 +395,19 @@ public class Metric {
         this.value = value;  
     }  
   
-    public LocalDateTime getCreatedAt() {  
+    public LocalDate getCreatedAt() {  
         return createdAt;  
     }  
   
-    public void setCreatedAt(LocalDateTime createdAt) {  
+    public void setCreatedAt(LocalDate createdAt) {  
         this.createdAt = createdAt;  
     }  
   
-    public LocalDateTime getUpdatedAt() {  
+    public LocalDate getUpdatedAt() {  
         return updatedAt;  
     }  
   
-    public void setUpdatedAt(LocalDateTime updatedAt) {  
+    public void setUpdatedAt(LocalDate updatedAt) {  
         this.updatedAt = updatedAt;  
     }  
   
@@ -448,8 +449,19 @@ public class Metric {
 
 ## 5.1 Creating the Repository
 
-Create a `MetricRepository.java` interface in `src/main/org/jacobwu/elasticsearch_springboot/repository/MetricRepository.java` 
+Create a `MetricRepository.java` interface in `src/main/org/jacobwu/elasticsearch_springboot/repository/MetricRepository.java`.
 
-```
-
+```java
+package org.jacobwu.elasticsearch_springboot.repository;  
+  
+import org.jacobwu.elasticsearch_springboot.model.Metric;  
+import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;  
+import java.util.List;  
+  
+public interface MetricRepository extends ElasticsearchRepository<Metric, String> {  
+  
+    List<Metric> findByStatus(String status);  
+    List<Metric> findByCategory(String category);  
+  
+}
 ```
