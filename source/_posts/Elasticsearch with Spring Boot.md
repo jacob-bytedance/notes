@@ -465,3 +465,117 @@ public interface MetricRepository extends ElasticsearchRepository<Metric, String
   
 }
 ```
+
+## 5.2 Creating the Service Layer
+
+In `src/main/org/jacobwu/elasticsearch_springboot/service/MetricService.java`, define the service class.
+
+```java
+package org.jacobwu.elasticsearch_springboot.service;  
+  
+import org.jacobwu.elasticsearch_springboot.model.Metric;  
+import org.jacobwu.elasticsearch_springboot.repository.MetricRepository;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.stereotype.Service;  
+  
+import java.util.List;  
+import java.util.Optional;  
+  
+@Service  
+public class MetricService {  
+  
+    @Autowired  
+    private MetricRepository metricRepository;  
+  
+    public Metric saveMetric(Metric metric) {  
+        return metricRepository.save(metric);  
+    }  
+  
+    public Optional<Metric> findById(String id) {  
+        return metricRepository.findById(id);  
+    }  
+  
+    public List<Metric> findByStatus(String status) {  
+        return metricRepository.findByStatus(status);  
+    }  
+  
+    public List<Metric> findByCategory(String category) {  
+        return metricRepository.findByCategory(category);  
+    }  
+  
+    public List<Metric> findAll() {  
+        return (List<Metric>) metricRepository.findAll();  
+    }  
+  
+    public void deleteMetric(String id) {  
+        metricRepository.deleteById(id);  
+    }  
+  
+    public void deleteAllMetrics() {  
+        metricRepository.deleteAll();  
+    }  
+}
+```
+
+## 5.3 Creating the Controller
+
+Now, let’s accept RESTful API using a controller at `src/main/org/jacobwu/elasticsearch_springboot/controller/MetricController.java`
+
+I recommend adding a delete all endpoint as included below in case you mess up.
+
+```java
+package org.jacobwu.elasticsearch_springboot.controller;  
+  
+import org.jacobwu.elasticsearch_springboot.model.Metric;  
+import org.jacobwu.elasticsearch_springboot.service.MetricService;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.http.ResponseEntity;  
+import org.springframework.web.bind.annotation.*;  
+  
+import java.util.List;  
+import java.util.Optional;  
+  
+@RestController  
+@RequestMapping("/api/metrics")  
+public class MetricController {  
+  
+    @Autowired  
+    private MetricService metricService;  
+  
+    @PostMapping  
+    public Metric createMetric(@RequestBody Metric metric) {  
+        return metricService.saveMetric(metric);  
+    }  
+  
+    @GetMapping("/{id}")  
+    public Optional<Metric> getMetricById(@PathVariable String id) {  
+        return metricService.findById(id);  
+    }  
+  
+    @GetMapping  
+    public List<Metric> getAllMetrics() {  
+        return metricService.findAll();  
+    }  
+  
+    @GetMapping("/status/{status}")  
+    public List<Metric> getMetricsByStatus(@PathVariable String status) {  
+        return metricService.findByStatus(status);  
+    }  
+  
+    @GetMapping("/category/{category}")  
+    public List<Metric> getMetricsByCategory(@PathVariable String category) {  
+        return metricService.findByCategory(category);  
+    }  
+  
+    @DeleteMapping("/{id}")  
+    public void deleteMetric(@PathVariable String id) {  
+        metricService.deleteMetric(id);  
+    }  
+  
+    @DeleteMapping("/all")  
+    public ResponseEntity<Void> deleteAllMetrics() {  
+        metricService.deleteAllMetrics();  
+        return ResponseEntity.noContent().build();  
+    }  
+}
+```
