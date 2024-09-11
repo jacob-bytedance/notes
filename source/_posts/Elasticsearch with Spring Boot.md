@@ -622,8 +622,26 @@ Retrieve all metrics
 curl -X GET http://localhost:8080/api/metrics
 ```
 
+Retrieve metrics by status
+
+```bash
+curl -X GET http://localhost:8080/api/metrics/status/active
+```
+
+Retrieve metrics by category
+
+```bash
+curl -X GET http://localhost:8080/api/metrics/category/performance
+```
+
 Delete a metric by id
 
 ```bash
 curl -X DELETE http://localhost:8080/api/metrics/1
+```
+
+Delete all metrics
+
+```bash
+curl -X DELETE http://localhost:8080/api/metrics/all
 ```
