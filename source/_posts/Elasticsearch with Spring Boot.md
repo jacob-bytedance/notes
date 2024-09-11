@@ -655,7 +655,7 @@ curl -X DELETE http://localhost:8080/api/metrics/all
 
 ## 5.5 Adding Mock Metrics
 
-You can use the script below to add metrics for testing. Since we have not yet implemented bulk insert functionality in our Spring Boot application, we can call Elasticsearch server directly to import sample metrics.
+You can use the script below to add 10 metrics for testing. Since we have not yet implemented bulk insert functionality in our Spring Boot application, we can call Elasticsearch server directly to import sample metrics.
 
 ```bash
 curl -X POST "localhost:9200/_bulk" -H 'Content-Type: application/json' -d'
@@ -679,6 +679,53 @@ curl -X POST "localhost:9200/_bulk" -H 'Content-Type: application/json' -d'
 { "id": 9, "key": "metric9", "name": "Return on Investment", "description": "The gain or loss generated on an investment.", "value": 23.7, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "active", "category": "financial", "module": "finance" }
 { "index" : { "_index" : "metrics", "_id" : "10" } }
 { "id": 10, "key": "metric10", "name": "Website Traffic", "description": "Number of visitors to the website.", "value": 25000, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "archived", "category": "performance", "module": "marketing" }
+'
+```
+
+If 10 is not enough for you, you can use the following script to add 20 more, for a total of 30 metrics for testing.
+
+```bash
+curl -X POST "localhost:9200/_bulk" -H 'Content-Type: application/json' -d'
+{ "index" : { "_index" : "metrics", "_id" : "11" } }
+{ "id": 11, "key": "metric11", "name": "Cost Per Acquisition", "description": "Average cost of acquiring a customer.", "value": 320.5, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "active", "category": "financial", "module": "marketing" }
+{ "index" : { "_index" : "metrics", "_id" : "12" } }
+{ "id": 12, "key": "metric12", "name": "Bounce Rate", "description": "Percentage of visitors who leave the website without taking action.", "value": 45.8, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "inactive", "category": "performance", "module": "technology" }
+{ "index" : { "_index" : "metrics", "_id" : "13" } }
+{ "id": 13, "key": "metric13", "name": "Customer Lifetime Value", "description": "Total value of a customer over their lifetime.", "value": 8500, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "active", "category": "financial", "module": "sales" }
+{ "index" : { "_index" : "metrics", "_id" : "14" } }
+{ "id": 14, "key": "metric14", "name": "Click-Through Rate", "description": "Percentage of people who click on a link after viewing it.", "value": 5.7, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "pending", "category": "marketing", "module": "sales" }
+{ "index" : { "_index" : "metrics", "_id" : "15" } }
+{ "id": 15, "key": "metric15", "name": "Gross Profit Margin", "description": "Total revenue minus cost of goods sold, divided by revenue.", "value": 68.3, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "active", "category": "financial", "module": "finance" }
+{ "index" : { "_index" : "metrics", "_id" : "16" } }
+{ "id": 16, "key": "metric16", "name": "Inventory Turnover", "description": "Number of times inventory is sold and replaced over a period.", "value": 8.4, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "inactive", "category": "performance", "module": "operations" }
+{ "index" : { "_index" : "metrics", "_id" : "17" } }
+{ "id": 17, "key": "metric17", "name": "Average Session Duration", "description": "Average time users spend on a website per visit.", "value": 3.2, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "active", "category": "performance", "module": "technology" }
+{ "index" : { "_index" : "metrics", "_id" : "18" } }
+{ "id": 18, "key": "metric18", "name": "Cart Abandonment Rate", "description": "Percentage of users who add items to their cart but don'\''t complete the purchase.", "value": 72.5, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "pending", "category": "sales", "module": "marketing" }
+{ "index" : { "_index" : "metrics", "_id" : "19" } }
+{ "id": 19, "key": "metric19", "name": "Monthly Recurring Revenue", "description": "The monthly revenue generated from subscription-based services.", "value": 15000, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "active", "category": "financial", "module": "sales" }
+{ "index" : { "_index" : "metrics", "_id" : "20" } }
+{ "id": 20, "key": "metric20", "name": "Employee Retention Rate", "description": "Percentage of employees who remain in the company over a certain period.", "value": 88.9, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "archived", "category": "performance", "module": "hr" }
+{ "index" : { "_index" : "metrics", "_id" : "21" } }
+{ "id": 21, "key": "metric21", "name": "Customer Acquisition Cost", "description": "Cost associated with acquiring a new customer.", "value": 400, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "active", "category": "financial", "module": "marketing" }
+{ "index" : { "_index" : "metrics", "_id" : "22" } }
+{ "id": 22, "key": "metric22", "name": "Social Media Engagement", "description": "Number of interactions with social media posts.", "value": 1500, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "inactive", "category": "performance", "module": "marketing" }
+{ "index" : { "_index" : "metrics", "_id" : "23" } }
+{ "id": 23, "key": "metric23", "name": "Time to Resolution", "description": "Average time taken to resolve a customer issue.", "value": 3.8, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "pending", "category": "customer", "module": "support" }
+{ "index" : { "_index" : "metrics", "_id" : "24" } }
+{ "id": 24, "key": "metric24", "name": "Net Revenue Retention", "description": "Percentage of revenue retained from existing customers over time.", "value": 105, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "active", "category": "financial", "module": "sales" }
+{ "index" : { "_index" : "metrics", "_id" : "25" } }
+{ "id": 25, "key": "metric25", "name": "Monthly Active Users", "description": "Number of unique users who engage with a product in a month.", "value": 20000, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "inactive", "category": "performance", "module": "technology" }
+{ "index" : { "_index" : "metrics", "_id" : "26" } }
+{ "id": 26, "key": "metric26", "name": "Error Rate", "description": "Percentage of errors generated by an application or system.", "value": 1.2, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "active", "category": "performance", "module": "technology" }
+{ "index" : { "_index" : "metrics", "_id" : "27" } }
+{ "id": 27, "key": "metric27", "name": "Gross Merchandise Volume", "description": "Total sales volume through a marketplace or eCommerce platform.", "value": 75000, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "pending", "category": "financial", "module": "sales" }
+{ "index" : { "_index" : "metrics", "_id" : "28" } }
+{ "id": 28, "key": "metric28", "name": "Marketing Qualified Leads", "description": "Number of leads who meet the marketing team'\''s criteria.", "value": 250, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "active", "category": "sales", "module": "marketing" }
+{ "index" : { "_index" : "metrics", "_id" : "29" } }
+{ "id": 29, "key": "metric29", "name": "Product Defect Rate", "description": "Percentage of products returned due to defects.", "value": 0.8, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "archived", "category": "performance", "module": "operations" }
+{ "index" : { "_index" : "metrics", "_id" : "30" } }
+{ "id": 30, "key": "metric30", "name": "Customer Response Rate", "description": "Percentage of customers who respond to surveys or emails.", "value": 20.5, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "active", "category": "customer", "module": "support" }
 '
 ```
 
@@ -938,3 +985,5 @@ Sending and receiving curl requests in the Terminal can be straightforward but i
 When you run the application and go to `http://localhost:8080/`, you should see the metrics added earlier in 5.5.
 
 ![[img/Elasticsearch with Spring Boot/1.png]]
+
+# 7. 
