@@ -309,7 +309,7 @@ spring.elasticsearch.repositories.enabled=true
 
 # 4. Creating Entity Object
 
-We start off with `MetricEsDTO.java` located in `src/main/org/jacobwu/elasticsearch_springboot/model/MetricEsDTO.java`. The getters and setters are created via IntelliJ's generators for getters and setters.
+We start off with `Metric.java` located in `src/main/org/jacobwu/elasticsearch_springboot/model/Metric.java`. The getters and setters are created via IntelliJ's generators for getters and setters.
 
 ```java
 package org.jacobwu.elasticsearch_springboot.model;  
@@ -322,7 +322,7 @@ import java.time.LocalDateTime;
 import org.springframework.data.elasticsearch.annotations.FieldType;  
   
 @Document(indexName = "metrics")  
-public class MetricEsDTO {  
+public class Metric {  
   
     @Id  
     private Long id; // The primary key  
@@ -444,9 +444,11 @@ public class MetricEsDTO {
 * Keyword fields are searchable but not analyzed
 * Text fields are searchable and analyzed (broken down into searchable terms, enables full-text search)
 
-# 4. Create a Repository Interface
+# 5. Repository and Service Layers
 
-Create a `MetricRepository` in 
+## 5.1 Creating the Repository
+
+Create a `MetricRepository.java` interface in `src/main/org/jacobwu/elasticsearch_springboot/repository/MetricRepository.java` 
 
 ```
 

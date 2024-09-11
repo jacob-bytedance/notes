@@ -16,8 +16,26 @@ git commit --amend
 ```bash
 git reset --soft HEAD^
 ```
+  
+## Undo the Last Commit and Discard Changes
 
-# Reset: Fix Very Big Mistakes
+```bash
+git reset --hard HEAD^
+```
+
+## Unstage Files
+
+```bash
+git reset <file>
+```
+
+## Discard All Uncommitted Changes
+
+```bash
+git reset --hard
+```
+
+# Fix Very Big Mistakes
 
 ## Reset All Commits (Including the Initial Commit)
 
