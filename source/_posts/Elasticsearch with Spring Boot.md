@@ -655,5 +655,31 @@ curl -X DELETE http://localhost:8080/api/metrics/all
 
 ## 5.5 Adding Mock Metrics
 
-You can use the script below to add metrics for testing
+You can use the script below to add metrics for testing. Since we have not yet implemented bulk insert functionality in our Spring Boot application, we can call Elasticsearch server directly to import sample metrics.
 
+```bash
+curl -X POST "localhost:9200/_bulk" -H 'Content-Type: application/json' -d'
+{ "index" : { "_index" : "metrics", "_id" : "1" } }
+{ "id": 1, "key": "metric1", "name": "Sales Revenue", "description": "Total sales revenue generated.", "value": 10000.5, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "active", "category": "financial", "module": "sales" }
+{ "index" : { "_index" : "metrics", "_id" : "2" } }
+{ "id": 2, "key": "metric2", "name": "Customer Satisfaction", "description": "Percentage of satisfied customers.", "value": 89.7, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "inactive", "category": "customer", "module": "support" }
+{ "index" : { "_index" : "metrics", "_id" : "3" } }
+{ "id": 3, "key": "metric3", "name": "Net Promoter Score", "description": "Customer likelihood of recommending the company.", "value": 7.5, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "active", "category": "customer", "module": "marketing" }
+{ "index" : { "_index" : "metrics", "_id" : "4" } }
+{ "id": 4, "key": "metric4", "name": "Churn Rate", "description": "Percentage of customers lost.", "value": 5.2, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "archived", "category": "customer", "module": "sales" }
+{ "index" : { "_index" : "metrics", "_id" : "5" } }
+{ "id": 5, "key": "metric5", "name": "Lead Conversion Rate", "description": "Percentage of leads converted to customers.", "value": 12.8, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "pending", "category": "sales", "module": "marketing" }
+{ "index" : { "_index" : "metrics", "_id" : "6" } }
+{ "id": 6, "key": "metric6", "name": "Average Order Value", "description": "Average value of customer orders.", "value": 450.5, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "active", "category": "financial", "module": "sales" }
+{ "index" : { "_index" : "metrics", "_id" : "7" } }
+{ "id": 7, "key": "metric7", "name": "Page Load Time", "description": "Average time taken for web page to load.", "value": 2.5, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "inactive", "category": "performance", "module": "technology" }
+{ "index" : { "_index" : "metrics", "_id" : "8" } }
+{ "id": 8, "key": "metric8", "name": "Email Open Rate", "description": "Percentage of emails opened by recipients.", "value": 55.4, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "pending", "category": "marketing", "module": "sales" }
+{ "index" : { "_index" : "metrics", "_id" : "9" } }
+{ "id": 9, "key": "metric9", "name": "Return on Investment", "description": "The gain or loss generated on an investment.", "value": 23.7, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "active", "category": "financial", "module": "finance" }
+{ "index" : { "_index" : "metrics", "_id" : "10" } }
+{ "id": 10, "key": "metric10", "name": "Website Traffic", "description": "Number of visitors to the website.", "value": 25000, "createdAt": "2024-09-10", "updatedAt": "2024-09-10", "status": "archived", "category": "performance", "module": "marketing" }
+'
+```
+
+After inserting the sample metrics, we can use the comm
