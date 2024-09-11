@@ -521,7 +521,16 @@ public class MetricService {
 
 Now, let’s accept RESTful API using a controller at `src/main/org/jacobwu/elasticsearch_springboot/controller/MetricController.java`
 
-I recommend adding a `deleteAllMetrics` endpoint as included below in case you mess up.
+I recommend adding a `deleteAllMetrics` endpoint as included below in case you mess up. For example, if you specify a data type in Java that is different from the data type in Elasticsearch, you may encounter a server error. You can call `deleteAllMetrics` and start over once you make the necessary data type changes.
+
+**API Endpoints**:
+* POST /api/metrics: Creates a new metric
+* GET /api/metrics/{id}: Retrieves a metric by its ID
+* GET /api/metrics: Retrieves all metrics
+* GET /api/metrics/status/{status}: Retrieves metrics filtered by status
+* GET /api/metrics/category/{category}: Retrieves metrics filtered by category
+* DELETE /api/metrics/{id}: Deletes a metric by its ID
+* DELETE /api/metrics/all: Deletes all metrics
 
 ```java
 package org.jacobwu.elasticsearch_springboot.controller;  
@@ -578,4 +587,43 @@ public class MetricController {
         return ResponseEntity.noContent().build();  
     }  
 }
+```
+
+## 5.4 Testing Spring Boot Elasticsearch
+
+We can create a metric
+
+```bash
+curl -X POST http://localhost:8080/api/metrics \
+-H "Content-Type: application/json" \
+-d '{
+  "id": "1",
+  "key": "metric1",
+  "name": "Sample Metric",
+  "description": "This is a sample metric.",
+  "value": 42.0,
+  "createdAt": "2024-09-10",
+  "updatedAt": "2024-09-10",
+  "status": "active",
+  "category": "performance",
+  "module": "sales"
+}'
+```
+
+Retrieve a metric by id
+
+```bash
+curl -X GET http://localhost:8080/api/metrics/1
+```
+
+Retrieve all metrics
+
+```bash
+curl -X GET http://localhost:8080/api/metrics
+```
+
+Delete a metric by id
+
+```bash
+curl -X DELETE http://localhost:8080/api/metrics/1
 ```
