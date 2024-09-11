@@ -683,3 +683,7 @@ curl -X POST "localhost:9200/_bulk" -H 'Content-Type: application/json' -d'
 ```
 
 After inserting the sample metrics, we can use the commands from 5.4 to verify Spring Boot Elasticsearch behavior.
+
+# 6. Frontend Implementation
+
+Sending and receiving curl requests in the Terminal can be straightforward but it's hard to make sense of the information. We can create a
