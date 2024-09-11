@@ -687,3 +687,254 @@ After inserting the sample metrics, we can use the commands from 5.4 to verify S
 # 6. Frontend Implementation
 
 Sending and receiving curl requests in the Terminal can be straightforward but it's hard to make sense of the information. We can create a frontend to showcase the various functionality of our metrics repository. Create a file `index.html` inside `src/resources/static`
+
+```html
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Metrics Dashboard</title>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            background-color: #f7f8fa;  
+            margin: 0;  
+            padding: 0;  
+            color: #333;  
+        }  
+  
+        header {  
+            background-color: #2d2f34;  
+            color: white;  
+            padding: 10px 20px;  
+            display: flex;  
+            justify-content: space-between;  
+            align-items: center;  
+        }  
+  
+        header h1 {  
+            margin: 0;  
+            font-size: 1.5rem;  
+        }  
+  
+        .container {  
+            padding: 20px;  
+        }  
+  
+        .filter {  
+            display: flex;  
+            gap: 20px;  
+            margin-bottom: 20px;  
+            justify-content: flex-start;  
+            align-items: center;  
+        }  
+  
+        select, button {  
+            padding: 10px;  
+            border: 1px solid #ddd;  
+            border-radius: 5px;  
+            background-color: white;  
+            cursor: pointer;  
+        }  
+  
+        button {  
+            background-color: #1c9cd8;  
+            color: white;  
+            border: none;  
+        }  
+  
+        button:hover {  
+            background-color: #1380a7;  
+        }  
+  
+        .metrics {  
+            width: 100%;  
+            border-collapse: collapse;  
+            background-color: white;  
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+        }  
+  
+        .metrics th, .metrics td {  
+            text-align: left;  
+            padding: 12px 15px;  
+            border: 1px solid #ddd;  
+        }  
+  
+        .metrics th {  
+            background-color: #f4f4f4;  
+            font-weight: 600;  
+            text-transform: uppercase;  
+            font-size: 14px;  
+            color: #333;  
+        }  
+  
+        .metrics td {  
+            font-size: 14px;  
+            color: #333;  
+        }  
+  
+        .status.active {  
+            color: green;  
+            font-weight: bold;  
+        }  
+  
+        .status.inactive {  
+            color: orange;  
+        }  
+  
+        .status.archived {  
+            color: red;  
+        }  
+  
+        .status.pending {  
+            color: blue;  
+        }  
+  
+        .pagination {  
+            margin-top: 20px;  
+            display: flex;  
+            justify-content: center;  
+        }  
+  
+        .pagination button {  
+            margin: 0 5px;  
+            padding: 8px 12px;  
+            border: none;  
+            background-color: #f4f4f4;  
+            cursor: pointer;  
+        }  
+  
+        .pagination button.active {  
+            background-color: #1c9cd8;  
+            color: white;  
+        }  
+  
+        .pagination button:hover {  
+            background-color: #ddd;  
+        }  
+  
+    </style>  
+</head>  
+<body>  
+  
+<header>  
+    <h1>Metrics Dashboard</h1>  
+</header>  
+  
+<div class="container">  
+    <div class="filter">  
+        <label for="status">Filter by Status: </label>  
+        <select id="status">  
+            <option value="">All</option>  
+            <option value="active">Active</option>  
+            <option value="inactive">Inactive</option>  
+            <option value="archived">Archived</option>  
+            <option value="pending">Pending</option>  
+        </select>  
+        <button onclick="applyFilter('status')">Filter by Status</button>  
+  
+        <label for="category">Filter by Category: </label>  
+        <select id="category">  
+            <option value="">All</option>  
+            <option value="financial">Financial</option>  
+            <option value="customer">Customer</option>  
+            <option value="performance">Performance</option>  
+            <option value="sales">Sales</option>  
+        </select>  
+        <button onclick="applyFilter('category')">Filter by Category</button>  
+    </div>  
+  
+    <table class="metrics">  
+        <thead>  
+        <tr>  
+            <th>ID</th>  
+            <th>Key</th>  
+            <th>Name</th>  
+            <th>Description</th>  
+            <th>Value</th>  
+            <th>Status</th>  
+            <th>Category</th>  
+            <th>Module</th>  
+            <th>Created At</th>  
+            <th>Updated At</th>  
+        </tr>  
+        </thead>  
+        <tbody id="metricsTableBody">  
+        <!-- Metrics dynamically inserted here -->  
+        </tbody>  
+    </table>  
+  
+    <div class="pagination" id="pagination">  
+        <!-- Pagination buttons will go here -->  
+    </div>  
+</div>  
+  
+<script>  
+    async function fetchMetrics(query = "") {  
+        const response = await fetch(`http://localhost:8080/api/metrics${query}`);  
+        const data = await response.json();  
+  
+        const metricsTableBody = document.getElementById("metricsTableBody");  
+        metricsTableBody.innerHTML = '';  
+  
+        if (data.numberOfElements > 0) {  
+            data.content.forEach(metric => {  
+                const row = `  
+                        <tr>                            <td>${metric.id}</td>  
+                            <td>${metric.key}</td>  
+                            <td>${metric.name}</td>  
+                            <td>${metric.description}</td>  
+                            <td>${metric.value}</td>  
+                            <td class="status ${metric.status}">${metric.status}</td>  
+                            <td>${metric.category}</td>  
+                            <td>${metric.module}</td>  
+                            <td>${metric.createdAt}</td>  
+                            <td>${metric.updatedAt}</td>  
+                        </tr>                    `;  
+                metricsTableBody.innerHTML += row;  
+            });  
+  
+            setupPagination(data.totalPages, page);  
+        } else {  
+            metricsTableBody.innerHTML = '<tr><td colspan="10">No metrics found</td></tr>';  
+        }  
+    }  
+  
+    function applyFilter(type) {  
+        let query = "";  
+        if (type === 'status') {  
+            const status = document.getElementById("status").value;  
+            query = status ? `/status/${status}` : "";  
+        } else if (type === 'category') {  
+            const category = document.getElementById("category").value;  
+            query = category ? `/category/${category}` : "";  
+        }  
+        fetchMetrics(query);  
+    }  
+  
+    function setupPagination(totalPages, currentPage) {  
+        const paginationDiv = document.getElementById("pagination");  
+        paginationDiv.innerHTML = '';  
+  
+        for (let i = 1; i <= totalPages; i++) {  
+            const btn = document.createElement('button');  
+            btn.textContent = i;  
+            btn.onclick = () => fetchMetrics(i);  
+            if (i === currentPage) {  
+                btn.classList.add('active');  
+            }  
+            paginationDiv.appendChild(btn);  
+        }  
+    }  
+  
+    window.onload = () => fetchMetrics();  
+</script>  
+  
+</body>  
+</html>
+```
+
+When you run the application and go to `http://localhost:8080/`, you should see the metrics added earlier in 5.5.
+
+![[img/Elasticsearch with Spring Boot/1.png]]
