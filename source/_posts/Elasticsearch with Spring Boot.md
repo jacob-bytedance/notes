@@ -240,13 +240,14 @@ In a new terminal window, run `curl -u elastic -X GET "http://localhost:9200/"`.
 
 ## 5.2 Configure
 
-Modify `config/elasticsearch.yml` to disable security for local testing so you won't have to deal with the headache of SSL and certificate authentication.
+Modify `config/elasticsearch.yml` to disable security for local testing so you won't have to deal with the headache of SSL and certificate authentication. You should run elasticsearch at least once to generate the default configuration settings, before applying the following modifications.
 
 * Set `xpack.security.enabled: false`
+* Set `xpack.security.enrollment.enabled: false`
 * Set `xpack.security.http.ssl.enabled: false` and comment out any other setting under `xpack.security.http.ssl`
 * Set `xpack.security.transport.ssl.enabled: false` and comment out any other setting under `xpack.security.transport.ssl`
 
-The modified elasticsearch.yml should look like this
+The modified `elasticsearch.yml` should look like this.
 
 ```yml
 # ======================== Elasticsearch Configuration =========================
@@ -370,4 +371,80 @@ http.host: 0.0.0.0
 #----------------------- END SECURITY AUTO CONFIGURATION -------------------------
 ```
 
+# 5.3 Verification of Elasticsearch Server
 
+Let's create an index called `test_index` using the curl command. We specify `pretty` to request a more readable and structured output.
+
+```curl
+curl -X PUT "http://localhost:9200/test_index?pretty"
+```
+
+A response indicating success will display:
+
+```curl
+{
+  "acknowledged" : true,
+  "shards_acknowledged" : true,
+  "index" : "test_index"
+}
+```
+
+Let's add a document using this command.
+
+```
+curl -X POST "http://localhost:9200/test_index/_doc/1?pretty" -H 'Content-Type: application/json' -d'
+{
+  "name": "Jacob Wu",
+  "age": 30,
+  "occupation": "Engineer"
+}'
+```
+
+A response indicating success will display:
+
+```
+{
+  "_index" : "test_index",
+  "_id" : "1",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 0,
+  "_primary_term" : 1
+}
+```
+
+Let's retrieve the document using this command.
+
+```
+curl -X GET "http://localhost:9200/test_index/_doc/1?pretty"
+```
+
+And the entry we inserted should be returned.
+
+We can search for an entry, after all, it is elasticsearch.
+
+```
+curl -X GET "http://localhost:9200/test_index/_search?pretty" -H 'Content-Type: application/json' -d'
+{
+  "query": {
+    "match": {
+      "name": "Jacob"
+    }
+  }
+}'
+```
+
+And again the entry is returned to us.
+
+Now we can delete the document.
+
+```
+curl -X DELETE "http://localhost:9200/test_index/_doc/1?pretty"
+```
+
+And finally delet
