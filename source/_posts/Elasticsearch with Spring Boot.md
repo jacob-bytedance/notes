@@ -455,13 +455,15 @@ Create a `MetricRepository.java` interface in `src/main/org/jacobwu/elasticsearc
 package org.jacobwu.elasticsearch_springboot.repository;  
   
 import org.jacobwu.elasticsearch_springboot.model.Metric;  
+import org.springframework.data.domain.Page;  
+import org.springframework.data.domain.Pageable;  
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;  
-import java.util.List;  
   
-public interface MetricRepository extends ElasticsearchRepository<Metric, String> {  
+/**  
+ * @author Jacob Wu */public interface MetricRepository extends ElasticsearchRepository<Metric, String> {  
   
-    List<Metric> findByStatus(String status);  
-    List<Metric> findByCategory(String category);  
+    Page<Metric> findByStatus(String status, Pageable pageable);  
+    Page<Metric> findByCategory(String category, Pageable pageable);  
   
 }
 ```
@@ -476,9 +478,10 @@ package org.jacobwu.elasticsearch_springboot.service;
 import org.jacobwu.elasticsearch_springboot.model.Metric;  
 import org.jacobwu.elasticsearch_springboot.repository.MetricRepository;  
 import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.data.domain.Page;  
+import org.springframework.data.domain.PageRequest;  
 import org.springframework.stereotype.Service;  
   
-import java.util.List;  
 import java.util.Optional;  
   
 @Service  
@@ -495,16 +498,16 @@ public class MetricService {
         return metricRepository.findById(id);  
     }  
   
-    public List<Metric> findByStatus(String status) {  
-        return metricRepository.findByStatus(status);  
+    public Page<Metric> findByStatus(String status, int page, int size) {  
+        return metricRepository.findByStatus(status, PageRequest.of(page, size));  
     }  
   
-    public List<Metric> findByCategory(String category) {  
-        return metricRepository.findByCategory(category);  
+    public Page<Metric> findByCategory(String category, int page, int size) {  
+        return metricRepository.findByCategory(category, PageRequest.of(page, size));  
     }  
   
-    public List<Metric> findAll() {  
-        return (List<Metric>) metricRepository.findAll();  
+    public Page<Metric> findAll() {  
+        return (Page<Metric>) metricRepository.findAll();  
     }  
   
     public void deleteMetric(String id) {  
@@ -538,10 +541,10 @@ package org.jacobwu.elasticsearch_springboot.controller;
 import org.jacobwu.elasticsearch_springboot.model.Metric;  
 import org.jacobwu.elasticsearch_springboot.service.MetricService;  
 import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.data.domain.Page;  
 import org.springframework.http.ResponseEntity;  
 import org.springframework.web.bind.annotation.*;  
   
-import java.util.List;  
 import java.util.Optional;  
   
 @RestController  
@@ -562,18 +565,22 @@ public class MetricController {
     }  
   
     @GetMapping  
-    public List<Metric> getAllMetrics() {  
+    public Page<Metric> getAllMetrics() {  
         return metricService.findAll();  
     }  
   
     @GetMapping("/status/{status}")  
-    public List<Metric> getMetricsByStatus(@PathVariable String status) {  
-        return metricService.findByStatus(status);  
+    public Page<Metric> getMetricsByStatus(@PathVariable String status,  
+                                           @RequestParam(defaultValue = "0") int page,  
+                                           @RequestParam(defaultValue = "10") int size) {  
+        return metricService.findByStatus(status, page, size);  
     }  
   
     @GetMapping("/category/{category}")  
-    public List<Metric> getMetricsByCategory(@PathVariable String category) {  
-        return metricService.findByCategory(category);  
+    public Page<Metric> getMetricsByCategory(@PathVariable String category,  
+                                             @RequestParam(defaultValue = "0") int page,  
+                                             @RequestParam(defaultValue = "10") int size) {  
+        return metricService.findByCategory(category, page, size);  
     }  
   
     @DeleteMapping("/{id}")  
@@ -645,3 +652,8 @@ Delete all metrics
 ```bash
 curl -X DELETE http://localhost:8080/api/metrics/all
 ```
+
+## 5.5 Adding Mock Metrics
+
+You can use the script below to add metrics for testing
+
