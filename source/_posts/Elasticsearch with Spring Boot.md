@@ -686,4 +686,4 @@ After inserting the sample metrics, we can use the commands from 5.4 to verify S
 
 # 6. Frontend Implementation
 
-Sending and receiving curl requests in the Terminal can be straightforward but it's hard to make sense of the information. We can create a
+Sending and receiving curl requests in the Terminal can be straightforward but it's hard to make sense of the information. We can create a frontend to showcase the various functionality of our metrics repository. Create a file `index.html` inside `src/resources/static`
