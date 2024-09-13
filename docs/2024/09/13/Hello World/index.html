@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   
-  <title>Domain Driven Design - Jacob&#39;s Notes</title>
+  <title>Hello World - Jacob&#39;s Notes</title>
   
     <link rel="shortcut icon" href="/notes/favicon.png">
   
@@ -16,15 +16,15 @@
   
   
   
-  <meta property="og:title" content="Domain Driven Design - Jacob&#39;s Notes" />
+  <meta property="og:title" content="Hello World - Jacob&#39;s Notes" />
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:url" content="https://jacob-bytedance.github.io/notes/2024/09/11/Domain%20Driven%20Design/index.html" />
+  <meta property="og:url" content="https://jacob-bytedance.github.io/notes/2024/09/13/Hello%20World/index.html" />
   
   <meta property="og:image" content="/favicon.png" />
   
-  <meta property="og:article:published_time" content="2024-09-11T20:35:10.297Z" />
+  <meta property="og:article:published_time" content="2024-09-13T20:03:08.799Z" />
   
   <meta property="og:article:author" content="Jacob Wu" />
   
@@ -155,144 +155,30 @@
         
         <div class="date" id="date">
             <span>September</span>
-            <span>11,</span>
+            <span>13,</span>
             <span>2024</span>
         </div>
         
 
-        <h1 class="title">Domain Driven Design</h1>
+        <h1 class="title">Hello World</h1>
     </div>
 
     <div class="divider"></div>
 
     <div class="content">
-        <h1 id="Key-Concepts"><a href="#Key-Concepts" class="headerlink" title="Key Concepts"></a>Key Concepts</h1><ul>
-<li><strong>Domain</strong>: Sphere of knowledge and activity around which the business revolves</li>
-<li><strong>Bounded Contexts</strong>: Implementation of a domain or sub-domain, characterized by clear boundaries and model autonomy<ul>
-<li>![[img&#x2F;Domain Driven Design&#x2F;1.png|512]]</li>
-<li>![[2.png|512]]</li>
-</ul>
-</li>
-<li><strong>Aggregate</strong>: Cluster of entities and value objects that are treated as a single unit for data changes and consistency, Principal identifier of your bounded context<ul>
-<li><strong>Entities</strong>: Objects that have a distinct identity and lifecycle (creation, modification, deletion), e.g. customer or order</li>
-<li><strong>Value Objects</strong>: Objects that describe aspects of the domain without having a distinct identity and are immutable, e.g. Date or Address</li>
-<li><strong>Repositories</strong>: Mechanisms for retrieving and storing aggregates</li>
-</ul>
-</li>
-<li><strong>Services</strong>: Operations or processes that are a part of the domain logic, but transcend entities and value objects<ul>
-<li><strong>Inbound Services</strong>: Incoming requests such as REST APIs, message listeners</li>
-<li><strong>Outbound Services</strong>: Communicating with external services, APIs, databases</li>
-<li><strong>Application Services</strong>: Workflow within a bounded context, coordinates and directs inbound and outbound services</li>
-<li>![[3.png|512]]</li>
-<li>![[4.png|512]]</li>
-</ul>
-</li>
-<li><strong>Domain Events</strong>: A change in the state of the domain</li>
-<li><strong>Sagas</strong>: Business processes &#x2F; workflows, may span across Bounded Contexts</li>
-</ul>
-<h1 id="Example-of-Key-Concepts-Cargo-Tracker-Project"><a href="#Example-of-Key-Concepts-Cargo-Tracker-Project" class="headerlink" title="Example of Key Concepts: Cargo Tracker Project"></a>Example of Key Concepts: Cargo Tracker Project</h1><ul>
-<li><p><strong>Domain</strong>: Cargo Tracker (with Sub-Domains: Booking, Handling, Routing, Tracking)</p>
-</li>
-<li><p><strong>Bounded Contexts</strong>: Booking, Handling, Routing, Tracking</p>
-</li>
-<li><p><strong>Aggregate</strong>: Cargo Aggregate, Handling Activity, Voyage, Tracking Activity</p>
-<ul>
-<li><strong>Entities</strong>: Location of cargo, Cargo details, Handling event</li>
-<li><strong>Value Objects</strong>: Booking amount, route specification, itinerary, delivery progress</li>
-<li><strong>Repositories</strong>: Cargo repository, Handling activity repository, Voyage repository, Tracking repository</li>
-</ul>
-</li>
-<li><p><strong>Services</strong>: Create new cargo shipment, route cargo shipment ![[5.png|512]]</p>
-<ul>
-<li><strong>Inbound Services</strong>: Query cargo, create cargo command</li>
-<li><strong>Outbound Services</strong>: Route new cargo ![[6.png|512]] ![[7.png|512]]</li>
-<li><strong>Application Services</strong>: Command&#x2F;Query Delegation</li>
-</ul>
-</li>
-<li><p><strong>Domain Events</strong>: New cargo created, new routing information</p>
-</li>
-<li><p><strong>Sagas</strong>: When a new cargo shipment is booked, we need to process payment, initialize tracking, and assign shipping route ![[8.png|512]]</p>
-</li>
-<li><p><strong>Objects</strong>: Aggregates, Entities, and Value Objects ![[9.png|512]] ![[10.png|512]] ![[11.png|512]] ![[12.png|512]]</p>
-</li>
-<li><p><strong>Operations</strong>: Commands, Queries, and Events ![[13.png|512]]</p>
-</li>
-</ul>
-<h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><ul>
-<li><strong>Interface Layer</strong> (or Presentation Layer): Handles user interfaces, APIs, validates and transforms user requests</li>
-<li><strong>Application Layer</strong>: Coordinating Tasks, Processes, and Overall Flow, liaises between domain layer and user interface</li>
-<li><strong>Domain Layer</strong>: Core where business logic and rules are implemented</li>
-<li><strong>Infrastructure Layer</strong>: Supports other layers by providing generic technical capabilities, such as databases, messaging systems, and file storage</li>
-</ul>
-<h1 id="Example-of-Implementations-Cargo-Tracker-Project"><a href="#Example-of-Implementations-Cargo-Tracker-Project" class="headerlink" title="Example of Implementations: Cargo Tracker Project"></a>Example of Implementations: Cargo Tracker Project</h1><p>![[14.png|512]]</p>
-<ul>
-<li><strong>Interface Layer</strong> (or Presentation Layer): Inbound Adaptors<ul>
-<li>Accepts Queries and Commands<ul>
-<li>CargoBookingController</li>
-<li>BookCargoResource</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>Event Handlers</strong> to process events generated by other BC<ul>
-<li>Transform helps translate incoming requests to the corresponding Command&#x2F;Query models required by the domain model<ul>
-<li>BookCargoCommandDTOAssembler</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>Application Layer</strong>: Application Services<ul>
-<li>Dispatch Commands&#x2F;Queries to the underlying Domain Model, possibly invoking infrastructural components<ul>
-<li>CargoBookingCommandService</li>
-<li>CargoBookingQueryService</li>
-</ul>
-</li>
-<li>Place Outbound Calls to other BC<ul>
-<li>ExternalCargoRoutingService: Anti-corruption layer to fetch the Optimal Itinerary for a Cargo based on the Route Specification</li>
-</ul>
-</li>
-<li>Provide centralized concerns (e.g. Logging, Security, Metrics) for the underlying Domain Model</li>
-</ul>
-</li>
-<li><strong>Domain Layer</strong>: Domain Model<ul>
-<li>Implementation of Core Business Logic<ul>
-<li>Aggregates<ul>
-<li>Cargo</li>
-<li>BookingId</li>
-</ul>
-</li>
-<li>Entities<ul>
-<li>Location</li>
-</ul>
-</li>
-<li>Value Objects<ul>
-<li>Booking Amount</li>
-<li>CargoItinerary</li>
-<li>Delivery</li>
-</ul>
-</li>
-<li>Commands<ul>
-<li>BookCargoCommand</li>
-<li>RouteCargoCommand</li>
-</ul>
-</li>
-<li>Events</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Infrastructure Layer: Outbound Adaptors<ul>
-<li>Communicate with underlying datastore, e.g. MySQL<ul>
-<li>CargoRepository extends JpaRepository&lt;Cargo, Long&gt;</li>
-</ul>
-</li>
-<li>Managing message queue, e.g. RabbitMQ<ul>
-<li>CargoEventSource</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
     </div>
 
@@ -307,13 +193,22 @@
     
 
     <div class="container post-prev-next">
-        <a class="next"></a>
         
-        <a href="/notes/2024/09/11/Elasticsearch%20with%20Spring%20Boot/" class="prev">
+        <a href="/notes/2024/09/13/Git%20Basics/" class="next">
+            <div>
+                <div class="text">
+                    <p class="label">Next</p>
+                    <h3 class="title">{{title}}</h3>
+                </div>
+            </div>
+        </a>
+        
+        
+        <a href="/notes/2024/09/13/MyBatis%20with%20Spring%20Boot/" class="prev">
             <div>
                 <div class="text">
                     <p class="label">Previous</p>
-                    <h3 class="title">Elasticsearch with Spring Boot</>
+                    <h3 class="title">MyBatis with Spring Boot</>
                 </div>
             </div>
         </a>
